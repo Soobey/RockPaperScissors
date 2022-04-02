@@ -62,18 +62,26 @@ function game() {
     let scoreComputer = 0;
 
     for (let i = 0; i < 5; i++) {
-        const playerSelection = computerPlay();
+        const playerSelection = prompt('Enter your Choice');
         const computerSelection = computerPlay();
         if (Play(playerSelection, computerSelection) === 'You Win!') {
             scorePlayer++;
+            alert(`Score: ${scorePlayer}:${scoreComputer}`)
         }
         else if (Play(playerSelection, computerSelection) === 'You Lose!') {
             scoreComputer++;
+            alert(`Score: ${scorePlayer}:${scoreComputer}`)
         }
         else {
-            console.log('Draw')
+            alert('Draw')
         }
-
-        console.log(`Score: ${scorePlayer}:${scoreComputer}`)
+    }
+    if (scorePlayer > scoreComputer) {
+        alert('Player Wins!')
+    }
+    else {
+        alert('Computer Wins!')
     }
 }
+
+game()
