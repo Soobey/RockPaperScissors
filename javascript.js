@@ -1,3 +1,4 @@
+//returns a random (whole) number between min and max (both included)
 function randNum(min = 0, max = 1) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -18,6 +19,8 @@ function computerPlay() {
     }
 }
 
+
+//decides who wins
 function Play(PlayerSelection, ComputerSelection) {
     let playerSelection = PlayerSelection.toLowerCase();
     let computerSelection = ComputerSelection.toLowerCase();
@@ -29,8 +32,11 @@ function Play(PlayerSelection, ComputerSelection) {
         else if (computerSelection === 'paper') {
             return result = 'You Lose!';
         }
-        else {
+        else if (computerSelection === 'scissors') {
             return result = 'You Win!';
+        }
+        else {
+            return result = 'ERROR';
         }
     }
     else if (playerSelection === 'paper') {
@@ -40,20 +46,29 @@ function Play(PlayerSelection, ComputerSelection) {
         else if (computerSelection === 'paper') {
             return result = 'Draw';
         }
-        else {
+        else if (computerSelection === 'scissors') {
             return result = 'You Lose!';
         }
+        else {
+            return result = 'ERROR';
+        }
     }
-    else {
+    else if (playerSelection === 'scissors'){
         if (computerSelection === 'rock') {
             return result = 'You Lose!';
         }
         else if (computerSelection === 'paper') {
             return result = 'You Win!';
         }
-        else {
+        else if (computerSelection === 'scissors') {
             return result = 'Draw';
-        }        
+        }
+        else {
+            return result = 'ERROR';
+        }    
+    }
+    else {
+        return result = 'ERROR';
     }
 }
 
@@ -61,27 +76,83 @@ function game() {
     let scorePlayer = 0;
     let scoreComputer = 0;
 
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt('Enter your Choice');
-        const computerSelection = computerPlay();
-        if (Play(playerSelection, computerSelection) === 'You Win!') {
-            scorePlayer++;
-            alert(`Score: ${scorePlayer}:${scoreComputer}`)
+    const end_result = document.querySelector('#end_result');
+    const Result = document.querySelector('#result');
+
+    //Displays the result from the beginning
+    end_result.textContent = `Result: ${scorePlayer} : ${scoreComputer}`;
+
+    //Listener for Rock-Button
+    const btnR = document.querySelector('#rock');
+    btnR.addEventListener('click', () => {
+        Play('Paper', computerPlay());
+        if (result === 'You Win!') {
+            scorePlayer += 1;
+            Result.textContent = `${result}`
         }
-        else if (Play(playerSelection, computerSelection) === 'You Lose!') {
-            scoreComputer++;
-            alert(`Score: ${scorePlayer}:${scoreComputer}`)
+        else if (result === 'You Lose!') {
+            scoreComputer += 1;
+            Result.textContent = `${result}`
         }
         else {
-            alert('Draw')
+            Result.textContent = `${result}`
         }
-    }
-    if (scorePlayer > scoreComputer) {
-        alert('Player Wins!')
-    }
-    else {
-        alert('Computer Wins!')
-    }
+
+        //Displays the result
+        if
+        end_result.textContent = `Result: ${scorePlayer} : ${scoreComputer}`;
+    });
+
+    //Listener for Paper-Button
+    const btnP = document.querySelector('#paper');
+    btnP.addEventListener('click', () => {
+        Play('Paper', computerPlay());
+        if (result === 'You Win!') {
+            scorePlayer += 1;
+            Result.textContent = `${result}`
+        }
+        else if (result === 'You Lose!') {
+            scoreComputer += 1;
+            Result.textContent = `${result}`
+        }
+        else {
+            Result.textContent = `${result}`
+        }
+
+        //Displays the result
+        end_result.textContent = `Result: ${scorePlayer} : ${scoreComputer}`;
+    });
+
+    //Listener for Scissors-Button
+    const btnS = document.querySelector('#scissors');
+    btnS.addEventListener('click', () => {
+        Play('Scissors', computerPlay());
+        if (result === 'You Win!') {
+            scorePlayer += 1;
+            Result.textContent = `${result}`
+        }
+        else if (result === 'You Lose!') {
+            scoreComputer += 1;
+            Result.textContent = `${result}`
+        }
+        else {
+            console.log(result);
+            Result.textContent = `${result}`
+        }
+
+        //Displays the result
+        end_result.textContent = `Result: ${scorePlayer} : ${scoreComputer}`;
+    });
+
+    const btnRe = document.querySelector('#reset');
+    btnRe.addEventListener('click', () => {
+        scoreComputer = 0;
+        scorePlayer = 0;
+        Result.textContent = `RESET`
+
+        //Displays the result (0:0)
+        end_result.textContent = `Result: ${scorePlayer} : ${scoreComputer}`;
+    });
 }
 
 game()
