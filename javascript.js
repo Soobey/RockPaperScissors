@@ -3,6 +3,7 @@ function randNum(min = 0, max = 1) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+// decision of the computer (random)
 function computerPlay() {
     let choice = randNum(1, 3);
     if (choice === 1) {
@@ -72,6 +73,7 @@ function Play(PlayerSelection, ComputerSelection) {
     }
 }
 
+//where the magic happens
 function game() {
     let scorePlayer = 0;
     let scoreComputer = 0;
@@ -88,18 +90,28 @@ function game() {
         Play('Paper', computerPlay());
         if (result === 'You Win!') {
             scorePlayer += 1;
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
         }
         else if (result === 'You Lose!') {
             scoreComputer += 1;
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
         }
         else {
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
+        }
+
+        if (scoreComputer === 5) {
+            Result.textContent = 'Computer Wins the game!';
+            scoreComputer = 0;
+            scorePlayer = 0;
+        }
+        else if (scorePlayer === 5) {
+            Result.textContent = 'You Win the game!';
+            scoreComputer = 0;
+            scorePlayer = 0;
         }
 
         //Displays the result
-        if
         end_result.textContent = `Result: ${scorePlayer} : ${scoreComputer}`;
     });
 
@@ -109,14 +121,25 @@ function game() {
         Play('Paper', computerPlay());
         if (result === 'You Win!') {
             scorePlayer += 1;
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
         }
         else if (result === 'You Lose!') {
             scoreComputer += 1;
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
         }
         else {
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
+        }
+
+        if (scoreComputer === 5) {
+            Result.textContent = 'Computer Wins the game!';
+            scoreComputer = 0;
+            scorePlayer = 0;
+        }
+        else if (scorePlayer === 5) {
+            Result.textContent = 'You Win the game!';
+            scoreComputer = 0;
+            scorePlayer = 0;
         }
 
         //Displays the result
@@ -129,15 +152,26 @@ function game() {
         Play('Scissors', computerPlay());
         if (result === 'You Win!') {
             scorePlayer += 1;
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
         }
         else if (result === 'You Lose!') {
             scoreComputer += 1;
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
         }
         else {
             console.log(result);
-            Result.textContent = `${result}`
+            Result.textContent = `${result}`;
+        }
+
+        if (scoreComputer === 5) {
+            Result.textContent = 'Computer Wins the game!';
+            scoreComputer = 0;
+            scorePlayer = 0;
+        }
+        else if (scorePlayer === 5) {
+            Result.textContent = 'You Win the game!';
+            scoreComputer = 0;
+            scorePlayer = 0;
         }
 
         //Displays the result
